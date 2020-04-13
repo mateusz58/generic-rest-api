@@ -1,10 +1,15 @@
 package com.ferdisonmezay.tutorials.genericrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Getter
+@Setter
 public class RoleDto extends DTO implements Serializable {
 
     private String name;
@@ -13,27 +18,11 @@ public class RoleDto extends DTO implements Serializable {
 
     private boolean isActive;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    @Builder
+    public RoleDto(Long id, String name, String roleKey, boolean isActive) {
+        super(id);
         this.name = name;
-    }
-
-    public String getRoleKey() {
-        return roleKey;
-    }
-
-    public void setRoleKey(String roleKey) {
         this.roleKey = roleKey;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
 }

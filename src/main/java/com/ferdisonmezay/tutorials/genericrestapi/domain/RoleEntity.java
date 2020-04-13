@@ -1,11 +1,16 @@
 package com.ferdisonmezay.tutorials.genericrestapi.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "restapi_roles")
+@Getter
+@Setter
 public final class RoleEntity extends ENTITY {
 
     @Column(name = "role_name")
@@ -17,27 +22,10 @@ public final class RoleEntity extends ENTITY {
     @Column(name = "is_active")
     private boolean isActive;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public RoleEntity(Long id, String name, String roleKey, boolean isActive) {
+        super(id);
         this.name = name;
-    }
-
-    public String getRoleKey() {
-        return roleKey;
-    }
-
-    public void setRoleKey(String roleKey) {
         this.roleKey = roleKey;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
 }
