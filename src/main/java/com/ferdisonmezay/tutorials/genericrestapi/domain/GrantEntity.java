@@ -1,14 +1,12 @@
 package com.ferdisonmezay.tutorials.genericrestapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "restapi_grants")
-public class GrantEntity extends ENTITY {
+public final class GrantEntity extends ENTITY {
 
     @Column(name = "grant_name")
     private String name;

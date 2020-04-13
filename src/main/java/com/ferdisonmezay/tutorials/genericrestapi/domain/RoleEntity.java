@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "restapi_roles")
-public class RoleEntity extends ENTITY {
+public final class RoleEntity extends ENTITY {
 
     @Column(name = "role_name")
     private String name;

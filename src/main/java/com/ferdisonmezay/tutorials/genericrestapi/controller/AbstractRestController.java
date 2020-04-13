@@ -84,7 +84,7 @@ public abstract class AbstractRestController<Dto extends DTO> {
     }
 
     protected String getGenericName() {
-        return ((Class<Dto>) ((ParameterizedType) getClass()
-            .getGenericSuperclass()).getActualTypeArguments()[0]).getTypeName();
+        return ((ParameterizedType) getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[0].getTypeName();
     }
 }
