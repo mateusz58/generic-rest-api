@@ -17,20 +17,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
     @Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                             
-          .apis(RequestHandlerSelectors.any())              
-          .paths(PathSelectors.any())                          
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+          .select()
+          .apis(RequestHandlerSelectors.any())
+          .paths(PathSelectors.any())
           .build()
           .apiInfo(apiInfo())
-          .useDefaultResponseMessages(false)                                   
-          ;    
-        
+          .useDefaultResponseMessages(false)
+          ;
     }
-    
+
     private ApiInfo apiInfo() {
-    	
+
     	ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
     	apiInfoBuilder.title("Generic REST API");
     	apiInfoBuilder.description("Simple REST API Generation");
@@ -38,8 +37,8 @@ public class SwaggerConfig {
     	apiInfoBuilder.contact(new Contact("Ferdi Sonmezay", "https://ferdisonmezay.com", "hi@ferdisonmezay.com"));
     	apiInfoBuilder.license("GNU GENERAL PUBLIC LICENSE, Version 3");
     	apiInfoBuilder.licenseUrl("https://www.gnu.org/licenses/gpl-3.0.en.html");
-    	
+
     	return apiInfoBuilder.build();
     }
-    
+
 }

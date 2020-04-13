@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.ferdisonmezay.tutorials.genericrestapi.model.BaseModel;
+import com.ferdisonmezay.tutorials.genericrestapi.domain.DTO;
 
-public interface BaseDao<T extends BaseModel> extends JpaRepository<T, Serializable> {
-
+public interface BaseDao<T extends DTO> extends JpaRepository<Long, Serializable> {
 }

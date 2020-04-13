@@ -59,7 +59,7 @@ BaseModel.java is as follows
 
 ```java
 
- package com.ferdisonmezay.tutorials.genericrestapi.model;
+ package com.ferdisonmezay.tutorials.genericrestapi.domain;
 
  import java.io.Serializable;
  import javax.persistence.Basic;
@@ -89,7 +89,7 @@ BaseModel.java is as follows
 
 ```java
 
-package com.ferdisonmezay.tutorials.genericrestapi.model;
+package com.ferdisonmezay.tutorials.genericrestapi.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -99,7 +99,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name="restapi_grants")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // json config
-public class Grant extends BaseModel {
+public class Grant extends DTO {
  	private static final long serialVersionUID = 4192997147639777673L;
  	@Column(name="grant_name") private String name;
  	@Column(name="grant_key")	private String grantKey;
@@ -116,7 +116,7 @@ public class Grant extends BaseModel {
 
 ```java
 
-package com.ferdisonmezay.tutorials.genericrestapi.model;
+package com.ferdisonmezay.tutorials.genericrestapi.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -126,7 +126,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name="restapi_roles")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // json config
-public class Role extends BaseModel{
+public class Role extends DTO{
 	private static final long serialVersionUID = -1938567246027507296L;
 	@Column(name="role_name") private String name;
 	@Column(name="role_key") private String roleKey;
@@ -157,9 +157,9 @@ I'm going to create a `BaseDao.java` superclass which is extended from
 package com.ferdisonmezay.tutorials.genericrestapi.dao;
 import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.ferdisonmezay.tutorials.genericrestapi.model.BaseModel;
+import com.ferdisonmezay.tutorials.genericrestapi.domain.DTO;
 
-public interface BaseDao<T extends BaseModel> extends JpaRepository<T, Serializable> {
+public interface BaseDao<T extends DTO> extends JpaRepository<T, Serializable> {
 
 }
 
@@ -169,9 +169,9 @@ public interface BaseDao<T extends BaseModel> extends JpaRepository<T, Serializa
 
 ```java
 package com.ferdisonmezay.tutorials.genericrestapi.dao;
-import com.ferdisonmezay.tutorials.genericrestapi.model.Grant;
+import com.ferdisonmezay.tutorials.genericrestapi.domain.GrantDto;
 
-public interface GrantDao extends BaseDao<Grant> {
+public interface GrantDao extends BaseDao<GrantDto> {
 
 }
 ```
@@ -180,9 +180,9 @@ public interface GrantDao extends BaseDao<Grant> {
 
 ```java
 package com.ferdisonmezay.tutorials.genericrestapi.dao;
-import com.ferdisonmezay.tutorials.genericrestapi.model.Role;
+import com.ferdisonmezay.tutorials.genericrestapi.domain.RoleDto;
 
-public interface RoleDao extends BaseDao<Role> {
+public interface RoleDao extends BaseDao<RoleDto> {
 
 }
 ```
@@ -208,9 +208,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.ferdisonmezay.tutorials.genericrestapi.dao.BaseDao;
-import com.ferdisonmezay.tutorials.genericrestapi.model.BaseModel;
+import com.ferdisonmezay.tutorials.genericrestapi.domain.DTO;
 
-public class GenericRestController<T extends BaseModel> {
+public class GenericRestController<T extends DTO> {
 
 	@Autowired
 	private BaseDao<T> dao;
@@ -240,11 +240,11 @@ package com.ferdisonmezay.tutorials.genericrestapi.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ferdisonmezay.tutorials.genericrestapi.model.Grant;
+import com.ferdisonmezay.tutorials.genericrestapi.domain.GrantDto;
 
 @RestController
 @RequestMapping("/grants")
-public class GrantController extends GenericRestController<Grant> {
+public class GrantController extends AbstractRestController<GrantDto> {
 
 }
 
@@ -258,11 +258,11 @@ package com.ferdisonmezay.tutorials.genericrestapi.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ferdisonmezay.tutorials.genericrestapi.model.Role;
+import com.ferdisonmezay.tutorials.genericrestapi.domain.RoleDto;
 
 @RestController
 @RequestMapping("/roles")
-public class RoleController extends GenericRestController<Role> {
+public class RoleController extends AbstractRestController<RoleDto> {
 
 }
 

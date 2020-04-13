@@ -1,29 +1,18 @@
-package com.ferdisonmezay.tutorials.genericrestapi.model;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+package com.ferdisonmezay.tutorials.genericrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Table(name="restapi_roles")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Role extends BaseModel{
+public class RoleDto extends DTO {
 
-	private static final long serialVersionUID = -1938567246027507296L;
-	
-	@Column(name="role_name")
 	private String name;
-	
-	@Column(name="role_key")
+
 	private String roleKey;
-	
-	@Column(name="is_active")
+
 	private boolean isActive;
 
 	public String getName() {
-		return name;
+	    return name;
 	}
 
 	public void setName(String name) {
@@ -45,6 +34,6 @@ public class Role extends BaseModel{
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	
+
+
 }
