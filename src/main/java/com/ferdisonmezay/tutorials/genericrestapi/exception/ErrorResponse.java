@@ -1,7 +1,5 @@
 package com.ferdisonmezay.tutorials.genericrestapi.exception;
 
-import net.bytebuddy.asm.Advice;
-
 import java.time.Instant;
 
 public class ErrorResponse {

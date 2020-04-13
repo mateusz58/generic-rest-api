@@ -1,31 +1,29 @@
 package com.ferdisonmezay.tutorials.genericrestapi.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GrantDto extends DTO {
+public class GrantDto extends DTO implements Serializable {
 
-	private String name;
+    private String name;
 
-	private String grantKey;
+    private String grantKey;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getGrantKey() {
-		return grantKey;
-	}
+    public String getGrantKey() {
+        return grantKey;
+    }
 
-	public void setGrantKey(String grantKey) {
-		this.grantKey = grantKey;
-	}
+    public void setGrantKey(String grantKey) {
+        this.grantKey = grantKey;
+    }
 }

@@ -1,7 +1,6 @@
 package com.ferdisonmezay.tutorials.genericrestapi.service;
 
 import com.ferdisonmezay.tutorials.genericrestapi.domain.DTO;
-import com.ferdisonmezay.tutorials.genericrestapi.domain.ENTITY;
 
 import java.util.List;
 
@@ -19,5 +18,5 @@ public interface BasicServiceInterface<Dto extends DTO> {
 
     boolean existsById(Long id);
 
-    void  deleteAll();
+    void deleteAll();
 }

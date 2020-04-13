@@ -1,25 +1,25 @@
 package com.ferdisonmezay.tutorials.genericrestapi.service;
 
+import com.ferdisonmezay.tutorials.genericrestapi.dao.BaseDao;
 import com.ferdisonmezay.tutorials.genericrestapi.domain.DTO;
 import com.ferdisonmezay.tutorials.genericrestapi.domain.ENTITY;
 import com.ferdisonmezay.tutorials.genericrestapi.mapper.DtoEntityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 
-public  class GenericServiceImpl<Dto extends DTO, Entity extends ENTITY> implements BasicServiceInterface <Dto> {
+public abstract class GenericServiceImpl<Dto extends DTO, Entity extends ENTITY> implements BasicServiceInterface<Dto> {
 
     protected static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    protected JpaRepository<Entity, Long> repository;
+    protected BaseDao<Entity> repository;
 
     protected DtoEntityMapper<Entity, Dto> mapper;
 
-    public GenericServiceImpl(JpaRepository<Entity, Long> repository, DtoEntityMapper<Entity, Dto> mapper) {
+    public GenericServiceImpl(BaseDao<Entity> repository, DtoEntityMapper<Entity, Dto> mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
@@ -51,7 +51,7 @@ public  class GenericServiceImpl<Dto extends DTO, Entity extends ENTITY> impleme
 
     @Override
     public boolean existsById(Long id) {
-        if(repository.findById(id).isPresent()) {
+        if (repository.findById(id).isPresent()) {
             return true;
         }
         return false;
@@ -61,5 +61,4 @@ public  class GenericServiceImpl<Dto extends DTO, Entity extends ENTITY> impleme
     public void deleteAll() {
         repository.deleteAll();
     }
-
 }

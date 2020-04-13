@@ -1,10 +1,9 @@
 package com.ferdisonmezay.tutorials.genericrestapi.dao;
 
-import java.io.Serializable;
-
+import com.ferdisonmezay.tutorials.genericrestapi.domain.ENTITY;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.ferdisonmezay.tutorials.genericrestapi.domain.DTO;
+import java.io.Serializable;
 
-public interface BaseDao<T extends DTO> extends JpaRepository<Long, Serializable> {
+public interface BaseDao<T extends ENTITY> extends JpaRepository<T, Serializable> {
 }

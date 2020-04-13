@@ -6,16 +6,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.lang.invoke.MethodHandles;
 import java.time.Clock;
 import java.time.Instant;
 
 @ControllerAdvice
-public class ExceptionHandlingAdvice {
-    private final Clock clock = Clock.systemDefaultZone();
-
+@RequestMapping(produces = "application/vnd.error+json")
+public class GenericExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    private final Clock clock = Clock.systemDefaultZone();
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleException(Exception ex) {
